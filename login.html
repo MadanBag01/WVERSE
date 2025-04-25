@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup/Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("pic1.jpg");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .toggle {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .toggle a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .toggle a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <h2 id="form-title">Signup</h2>
+        <form id="auth-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+
+            <button type="submit">Signup</button>
+        </form>
+        <div class="toggle">
+            <span id="toggle-text">Already have an account? <a href="#" id="toggle-link">Login</a></span>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const formTitle = document.getElementById('form-title');
+        const authForm = document.getElementById('auth-form');
+        const toggleText = document.getElementById('toggle-text');
+        const toggleLink = document.getElementById('toggle-link');
+
+        let isSignup = true;
+
+        toggleLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            isSignup = !isSignup;
+
+            if (isSignup) {
+                formTitle.textContent = 'Signup';
+                toggleText.innerHTML = 'Already have an account? <a href="#" id="toggle-link">Login</a>';
+                authForm.querySelector('button').textContent = 'Signup';
+            } else {
+                formTitle.textContent = 'Login';
+                toggleText.innerHTML = 'Don\'t have an account? <a href="#" id="toggle-link">Signup</a>';
+                authForm.querySelector('button').textContent = 'Login';
+            }
+        });
+
+        authForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (isSignup) {
+                alert(`Signup successful for username: ${username}, email: ${email}`);
+            } else {
+                alert(`Login successful for email: ${email}`);
+            }
+
+            authForm.reset();
+        });
+    </script>
+</body>
+</html>

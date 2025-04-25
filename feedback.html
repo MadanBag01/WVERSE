@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #0078D7;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+        }
+        section {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #0078D7;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form div {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333333;
+            font-size: 1.1rem;
+        }
+        textarea, input, select, button {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        textarea:focus, input:focus, select:focus {
+            border-color: #0078D7;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
+        }
+        button {
+            background-color: #0078D7;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+        }
+        button:hover {
+            background-color: #005a9e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Travel Feedback</h1>
+    </header>
+    <section>
+        <h2>We value your feedback</h2>
+        <form action="/submit-feedback" method="post">
+            <div>
+                <label for="difficulties" style="color: #d9534f;">What difficulties have you faced during travel (e.g., connectivity issues)?</label>
+                <textarea id="difficulties" name="difficulties" rows="4" placeholder="Describe your difficulties..." required></textarea>
+            </div>
+            <div>
+                <label for="destination-quality" style="color: #5bc0de;">Is the destination good?</label>
+                <select id="destination-quality" name="destination_quality" required>
+                    <option value="">Choose an option</option>
+                    <option value="excellent">Excellent</option>
+                    <option value="good">Good</option>
+                    <option value="average">Average</option>
+                    <option value="poor">Poor</option>
+                </select>
+            </div>
+            <div>
+                <label for="crime-free" style="color: #5cb85c;">Is it crime-free?</label>
+                <select id="crime-free" name="crime_free" required>
+                    <option value="">Choose an option</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div>
+                <label for="suspicious-activity" style="color: #f0ad4e;">Did you face any suspicious activities or crimes in this place?</label>
+                <textarea id="suspicious-activity" name="suspicious_activity" rows="4" placeholder="Describe any incidents..."></textarea>
+            </div>
+            <div>
+                <label for="infrastructure" style="color: #0275d8;">What infrastructure development do you want there?</label>
+                <textarea id="infrastructure" name="infrastructure" rows="4" placeholder="Suggest improvements..."></textarea>
+            </div>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </section>
+</body>
+</html>

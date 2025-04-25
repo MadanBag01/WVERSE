@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Clone</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            display: flex;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 20%;
+            padding: 20px;
+            border-right: 1px solid gray;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .sidebar nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            cursor: pointer;
+        }
+
+        .sidebar nav a i {
+            font-size: 20px;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .search-bar {
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .stories {
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid gray;
+            padding-bottom: 10px;
+        }
+
+        .story {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: gray;
+            border: 3px solid pink;
+        }
+
+        .post {
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: gray;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 300px;
+            background: gray;
+            border-radius: 10px;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .post-actions i {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .likes, .caption {
+            font-size: 14px;
+        }
+
+        .suggested {
+            width: 25%;
+            padding: 20px;
+        }
+
+        .suggested h2 {
+            margin-bottom: 10px;
+        }
+
+        .suggested-user {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .follow-btn {
+            background: blue;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .following {
+            background: gray !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1 class="logo">Instagram</h1>
+            <nav>
+                <a href="#" id="search-btn"><i class="fas fa-search"></i> Search</a>
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-heart"></i> Notifications</a>
+                <a href="#"><i class="fas fa-plus-square"></i> Post</a>
+                <a href="#"><i class="fas fa-user"></i> Profile</a>
+                <a href="#"><i class="fas fa-user"></i> Followers</a>
+                <a href="#"><i class="fas fa-user"></i> Following</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" placeholder="Search for users...">
+            </div>
+
+            <!-- Stories Section -->
+            <div class="stories">
+                <div class="story"></div>
+                <div class="story"></div>
+                <div class="story"></div>
+                <div class="story"></div>
+                <div class="story"></div>
+            </div>
+
+            <!-- Post -->
+            <div class="post">
+                <div class="post-header">
+                    <div class="profile-pic"></div>
+                    <span>crictracker</span>
+                </div>
+                <div class="post-image"></div>
+                <div class="post-actions">
+                    <i class="fas fa-heart like-btn"></i>
+                    <i class="fas fa-comment"></i>
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <p class="likes">23,907 likes</p>
+                <p class="caption"><strong>crictracker</strong> Some caption text...</p>
+            </div>
+
+            <!-- Suggested Users -->
+            <div class="suggested">
+                <h2>Suggested for you</h2>
+                <div class="suggested-user">
+                    <div class="profile-pic"></div>
+                    <span>User 1</span>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="suggested-user">
+                    <div class="profile-pic"></div>
+                    <span>User 2</span>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="suggested-user">
+                    <div class="profile-pic"></div>
+                    <span>User 3</span>
+                    <button class="follow-btn">Follow</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const likeBtn = document.querySelector(".like-btn");
+        const searchBtn = document.getElementById("search-btn");
+        const searchBar = document.querySelector(".search-bar");
+        const followBtns = document.querySelectorAll(".follow-btn");
+
+        // Like Button Functionality
+        likeBtn.addEventListener("click", () => {
+            if (likeBtn.classList.contains("liked")) {
+                likeBtn.classList.remove("liked");
+                likeBtn.style.color = "white";
+            } else {
+                likeBtn.classList.add("liked");
+                likeBtn.style.color = "red";
+            }
+        });
+
+        // Search Bar Toggle
+        searchBtn.addEventListener("click", () => {
+            if (searchBar.style.display === "block") {
+                searchBar.style.display = "none";
+            } else {
+                searchBar.style.display = "block";
+            }
+        });
+
+        // Follow Button Toggle
+        followBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                if (btn.innerText === "Follow") {
+                    btn.innerText = "Following";
+                    btn.classList.add("following");
+                } else {
+                    btn.innerText = "Follow";
+                    btn.classList.remove("following");
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
